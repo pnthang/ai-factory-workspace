@@ -1,21 +1,19 @@
-Here is a simple Python script that prints "Hello World" to the console and writes it to a file named `hello.txt`:
+Here is a simple Python script that prints "Hello World" and writes it to a file named `hello.txt`:
 ```
 # hello.py
-
 print("Hello World")
-
 with open("hello.txt", "w") as f:
-    f.write("Hello World")
+    f.write("Hello World\n")
 ```
-Let me explain what's going on:
+Let me explain what each line does:
 
-* The first line, `print("Hello World")`, simply prints the string "Hello World" to the console.
-* The second block of code uses a `with` statement to open a file named `hello.txt` in write mode (`"w"`). The file will be created if it doesn't already exist.
-* Inside the `with` block, we use the `write()` method to write the string "Hello World" to the file.
+1. `print("Hello World")`: This is the classic "Hello World" print statement.
+2. `with open("hello.txt", "w") as f:`: This opens a file named `hello.txt` in write mode (`"w"`). The `with` statement ensures that the file is properly closed when we're done with it, regardless of whether an exception is thrown or not.
+3. `f.write("Hello World\n")`: This writes the string "Hello World\n" (note the newline character at the end) to the file.
 
-To run this script, save it to a file called `hello.py`, then execute it using Python:
+To run this script, save it to a file named `hello.py` and then execute it using Python:
 ```
 $ python hello.py
 Hello World
 ```
-After running the script, you should see the message "Hello World" printed to the console. Additionally, a file named `hello.txt` will be created in the same directory as your script, containing the string "Hello World".
+After running the script, you should see the file `hello.txt` created in your current working directory with the contents "Hello World\n".

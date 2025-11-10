@@ -1,42 +1,39 @@
-To write unit tests for the `app.py` script, you need to understand how the script works and what it is supposed to do.
+To write unit tests for the `app.py` script, you'll need to use a testing framework like Python's built-in `unittest` module.
 
-Assuming that the `app.py` script has a function `print_hello_world()` which prints "Hello World" to the console and writes it to a file named "hello.txt", here's an example of unit tests for this scenario using Python's built-in testing library, `unittest`.
-
-1. Create a new file called `app_test.py`.
-
-2. Import the necessary modules:
+First, create a file named `app_test.py` in the same directory as your `app.py`. Then add the following code:
 
 ```python
 import unittest
-from app import print_hello_world
-```
+from app import print_hello_world, write_hello_to_txt
 
-3. Define the unit test class:
-
-```python
-class TestPrintHelloWorld(unittest.TestCase):
-    def setUp(self):
-        # Initialize variables or setup any required resources
-        self.file_path = "hello.txt"
-        self.console_output = "Hello World"
-
-    def test_print_hello_world_to_console(self):
-        # Test the function by calling it and checking its output
+class AppTest(unittest.TestCase):
+    def test_print_hello_world(self):
         result = print_hello_world()
-        self.assertEqual(result, self.console_output)
+        self.assertEqual(result, "Hello World")
 
-    def test_write_hello_world_to_file(self):
-        # Test that the function writes the expected content to the file
-        result = print_hello_world(file_path=self.file_path))
-        self.assertTrue(self.file_path in result and "Hello World" in result), f"Expected 'Hello World' written to {self.file_path}, but got: {result}")
+    def test_write_hello_to_txt(self):
+        output_file = "hello.txt"
+        result = write_hello_to_txt(output_file)
+        self.assertTrue(result, "Hello World written to hello.txt")
+        self.assertFileExists(output_file)
+
+    @classmethod
+    def setup_class(cls):
+        # You can add any setup required for your tests here
+
+    @classmethod
+    def teardown_class(cls):
+        # You can add any cleanup required after your tests here
+
+
+if __name__ == "__main__":
+    unittest.main()
 ```
 
-4. Save the `app_test.py` file.
+This code sets up a `unittest.TestCase` class named `AppTest` which contains two test methods:
 
-5. Run the tests:
+1. `test_print_hello_world`: This method checks if the `print_hello_world()` function prints "Hello World" correctly.
 
-```bash
-python app_test.py
-```
+2. `test_write_hello_to_txt`: This method checks if the `write_hello_to_txt(output_file))` function writes "Hello World" to a file named "hello.txt" correctly and that the file exists after writing.
 
-If all tests pass, you have successfully verified that your `app.py` script prints "Hello World" to the console and writes it to a file named "hello.txt".
+Lastly, the script includes a setup and teardown class method to perform any necessary setup or cleanup tasks for your tests.

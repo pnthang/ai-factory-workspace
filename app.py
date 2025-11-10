@@ -1,23 +1,21 @@
-Here is a simple Python program that prints "Hello World" to the console and also writes it to a file named `hello.txt`:
-```
-# hello.py
+Here is a simple Python script that does what you asked:
+
+```Python
+# Print Hello World to the console
 print("Hello World")
+
+# Write Hello World to a file
 with open("hello.txt", "w") as f:
     f.write("Hello World")
 ```
-Let me explain what's going on:
 
-* The first line, `print("Hello World")`, simply prints the string "Hello World" to the console.
-* The second line uses a context manager (`with` statement) to open a file named `hello.txt` in write mode (`"w"`). This ensures that the file is properly closed when we're done with it, even if an exception is thrown.
-* Inside the `with` block, we use the `write()` method to write the string "Hello World" to the file.
+Let me explain what this code does:
 
-To run this program, save it to a file named `hello.py` and then execute it using Python:
-```
-$ python hello.py
-Hello World
-```
-After running the program, you should see that a new file named `hello.txt` has been created in your current working directory, containing the string "Hello World":
-```
-$ cat hello.txt
-Hello World
-```
+- The first line, `print("Hello World")`, prints "Hello World" to the console.
+- The second part of the script uses Python's built-in file handling capabilities to write "Hello World" to a file named "hello.txt".
+
+Here are some important details about how it works:
+- The `with` statement is used to open and automatically close the file. This ensures that the file is properly closed after we're done with it, even if an error occurs.
+- The `"w"` argument means "write mode". If a file with this name already exists, its contents will be deleted before writing. If no such file exists, one will be created.
+
+Save this script to a file (for example, `hello.py`), then run it using Python (e.g., `python hello.py`). You should see "Hello World" printed to the console and written to a file named "hello.txt".

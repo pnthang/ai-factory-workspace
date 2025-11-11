@@ -1,0 +1,30 @@
+
+```markdown
+# Multi-Agent App
+
+A sample application showcasing a multi-agent workflow using AutoGen.
+
+## Overview
+
+This app demonstrates the collaboration between different agents:
+1. Coder: responsible for generating PRs.
+2. Tester: reviews and tests the code.
+3. QA: ensures the app meets quality standards.
+4. DevOps: deploys and maintains the app.
+
+## Issues
+
+* [Issue #1: Code Review](issues/issue-1.md)
+* [Issue #2: Testing Fails](issues/issue-2.md)
+* **[Issue #3: AutoGen multi-agent app PR]** (this one)
+
+## Get Involved
+
+To contribute to this project, follow the guidelines:
+
+* Run `make` to generate the PR.
+* Review and test the code.
+* Deploy the app using the DevOps agent.
+
+Contact us at [support@autogen.io](mailto:support@autogen.io) for any questions or issues.
+```

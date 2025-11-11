@@ -1,0 +1,10 @@
+
+```python
+import unittest
+from app.pr_generator import generate_pr
+
+class TestPRGenerator(unittest.TestCase):
+    def test_generate_pr(self):
+        # Add your code here to test the PR generation process
+        pass
+```

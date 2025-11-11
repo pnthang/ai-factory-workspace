@@ -1,0 +1,31 @@
+
+```python
+import pytest
+from content import write_to_hello_txt,  # Replace with your function that writes to a file named "hello.txt"
+
+```python
+def test_write_result():
+    assert write_to_hello_txt == True
+```
+
+```python
+# Assuming you have the following in your `content.py` module:
+
+```python
+import pytest
+from content import write_to_hello_txt,  # Replace with your function
+
+def test_write_to_hello_txt():
+    result = write_to_hello_txt(    "Hello.txt")  # assuming it's a simple text file to test.
+
+    assert result == True
+
+# Jest integration example (run the tests)
+
+```python
+pytest.main([__file__])
+```
+
+In this script, I've created a function that reads the 'hello.txt' file and asserts that the write_to_hello_txt() function returns `True`. This is used by pytest to run the tests.
+
+Please make sure your code is set up correctly and test cases are as expected.

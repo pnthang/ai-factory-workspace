@@ -1,1 +1,3 @@
-Test commit to main at 2025-11-10 16:53:21
+
+**Line 11:**
+- Remove the extra closing curly brace at the end of the line.

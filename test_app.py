@@ -1,50 +1,43 @@
-Here's a simple Python script called `app.py` that you're trying to test. The script has two functionalities: printing "Hello World" and writing to a file named `hello.txt`.
+To write unit tests for `app.py`, we first need to understand the functionality that needs to be verified.
 
-First, let's create a separate Python file (e.g., `test_app.py`) for unit testing. We'll write tests using the `unittest` module.
+The `app.py` script:
+1. Prints "Hello World" using `print()`.
+2. Writes "Hello World" to a file named `hello.txt` using a context manager with the `open()` function and the `"w"` mode.
 
-```python
-# app.py
+Now, let's write unit tests for these functionalities using Python's testing framework, `unittest`.
 
-def print_hello_world():
-    return "Hello World"
-
-def write_to_hello_txt(text):
-    with open("hello.txt", "w") as f:
-        f.write(text)
-```
-
-Now, let's create a test file to contain these tests:
+Create a new file named `app_test.py`:
 
 ```python
-# test_app.py
-
 import unittest
 from app import print_hello_world, write_to_hello_txt
 
-
-class TestApp(unittest.TestCase):
+class AppTest(unittest.TestCase):
     def test_print_hello_world(self):
-        self.assertEqual(print_hello_world(), "Hello World")
+        result = print_hello_world()
+        self.assertEqual(result, "Hello World")
 
     def test_write_to_hello_txt(self):
-        text = "This is a test text."
-        self.assertTrue(write_to_hello_txt(text), "File 'hello.txt' created."))
+        text = "Hello Again"
+        expected_file_content = f"{text}\n"
 
+        with open("hello.txt", "w") as file:
+            file.write(write_to_hello_txt(text)))
+
+        actual_file_content = file.read().strip()
+        self.assertEqual(actual_file_content, expected_file_content)
 
 if __name__ == "__main__":
     unittest.main()
 ```
 
-In this test file, we define two tests for our `app.py` module:
+Explanation of the `app_test.py` code:
 
-1. `test_print_hello_world()` checks that the `print_hello_world()` function returns the expected string.
+1. Import the necessary modules: `unittest` for writing tests.
+2. Create a class called `AppTest` that inherits from `unittest.TestCase`. This will help you write individual test methods.
+3. Within the `AppTest` class, define two test methods:
+   - `test_print_hello_world`: Checks if the function `print_hello_world()` correctly prints "Hello World".
+   - `test_write_to_hello_txt`: Verifies that the function `write_to_hello_txt(text)`) writes the provided text to a file named `hello.txt`.
+4. Finally, in the `if __name__ == "__main__":` block, call `unittest.main()` to run all tests.
 
-2. `test_write_to_hello_txt()` verifies that the `write_to_hello_txt()` function writes the provided text to a `hello.txt` file.
-
-To run these tests, simply save this test file as `test_app.py` and run it using the Python interpreter:
-
-```bash
-$ python test_app.py
-```
-
-If all tests pass, you should see output indicating that each test was successful.
+Now, when you run the script `app.py` and then run the test suite `app_test.py`, it will verify if both print "Hello World" and write to the hello.txt file correctly.

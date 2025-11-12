@@ -1,54 +1,43 @@
-To write unit tests for the `app.py` script, you'll need a testing framework such as `unittest` in Python. First, let's create the test file and import necessary modules:
+To write unit tests for `app.py`, we first need to understand the functionality that needs to be verified.
 
-1. Create `test_app.py`:
+The `app.py` script:
+1. Prints "Hello World" using `print()`.
+2. Writes "Hello World" to a file named `hello.txt` using a context manager with the `open()` function and the `"w"` mode.
+
+Now, let's write unit tests for these functionalities using Python's testing framework, `unittest`.
+
+Create a new file named `app_test.py`:
+
 ```python
-# test_app.py
-
 import unittest
-from app import print_hello_world, write_to_file
+from app import print_hello_world, write_to_hello_txt
 
 class AppTest(unittest.TestCase):
     def test_print_hello_world(self):
         result = print_hello_world()
         self.assertEqual(result, "Hello World")
 
-    def test_write_to_file(self):
-        content = "Hello again"
-        write_result = write_to_file(content, "hello.txt"))
-        with open("hello.txt", "r") as file:
-            expected_content = file.read()
-        self.assertEqual(write_result, True)
-        self.assertEqual(expected_content, content + "\n")
+    def test_write_to_hello_txt(self):
+        text = "Hello Again"
+        expected_file_content = f"{text}\n"
+
+        with open("hello.txt", "w") as file:
+            file.write(write_to_hello_txt(text)))
+
+        actual_file_content = file.read().strip()
+        self.assertEqual(actual_file_content, expected_file_content)
 
 if __name__ == "__main__":
     unittest.main()
 ```
-2. Implement `app.py` for testing purposes:
-```python
-# app.py (for testing)
 
-def print_hello_world():
-    return "Hello World"
+Explanation of the `app_test.py` code:
 
-def write_to_file(content, filename):
-    with open(filename, "w") as file:
-        file.write(content)
-    return True
-```
-Now you have a test file `test_app.py` and an example `app.py` for testing. When you run the tests using `unittest.main()` in the test file, they will verify both print statement and file writing functionality.
+1. Import the necessary modules: `unittest` for writing tests.
+2. Create a class called `AppTest` that inherits from `unittest.TestCase`. This will help you write individual test methods.
+3. Within the `AppTest` class, define two test methods:
+   - `test_print_hello_world`: Checks if the function `print_hello_world()` correctly prints "Hello World".
+   - `test_write_to_hello_txt`: Verifies that the function `write_to_hello_txt(text)`) writes the provided text to a file named `hello.txt`.
+4. Finally, in the `if __name__ == "__main__":` block, call `unittest.main()` to run all tests.
 
-Example output of unit tests:
-
-```bash
-$ python test_app.py
-...
-Test case 'test_write_to_file' passed.
-Test case 'test_print_hello_world' passed.
-...
-
-----------------------------------------------------------------------
-Ran 2 tests in 0.01s
-
-OK
-```
-The `OK` message indicates that all the tests have passed successfully.
+Now, when you run the script `app.py` and then run the test suite `app_test.py`, it will verify if both print "Hello World" and write to the hello.txt file correctly.
